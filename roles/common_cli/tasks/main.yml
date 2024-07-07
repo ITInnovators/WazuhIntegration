@@ -15,9 +15,38 @@
     - taskwarrior
     - ripgrep
     - jq
-    
 
 #- name: Set timezone
 #  ansible.builtin.command:
 #    cmd: "timedatectl set-timezone {{ timezone }}"
 #  ignore_errors: true
+
+- name: Get latest lazygit release info
+  uri:
+    url: https://api.github.com/repos/jesseduffield/lazygit/releases/latest
+    return_content: yes
+    headers:
+      Accept: application/vnd.github.v3+json
+  register: lazygit_release
+
+- name: Set lazygit version as a fact
+  set_fact:
+    lazygit_version: "{{ lazygit_release.json.tag_name[1:] }}"
+
+- name: Download lazygit tar.gz
+  get_url:
+    url: "https://github.com/jesseduffield/lazygit/releases/download/v{{ lazygit_version }}/lazygit_{{ lazygit_version }}_Linux_x86_64.tar.gz"
+    dest: "/tmp/lazygit_{{ lazygit_version }}_Linux_x86_64.tar.gz"
+
+- name: Extract lazygit from tar.gz
+  ansible.builtin.unarchive:
+    src: "/tmp/lazygit_{{ lazygit_version }}_Linux_x86_64.tar.gz"
+    dest: "/tmp"
+    remote_src: yes
+
+- name: Install lazygit binary
+  ansible.builtin.copy:
+    src: "/tmp/lazygit"
+    dest: "/usr/local/bin/lazygit"
+    mode: '0755'
+    remote_src: yes

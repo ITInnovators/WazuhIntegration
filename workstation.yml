@@ -6,7 +6,7 @@
     - sshd
     - update
     - remove
-    #- helix
+    - helix
     - common_cli
     - common_desktop
     - common_snap
@@ -17,7 +17,7 @@
     - test_and_kill # test and kill scripts
     - sudo
     #- tuned
-    #- dotfiles # <- force shit load of stuff fish/starship for all users
+    - dotfiles # <- force shit load of stuff fish/starship for all users
 
 
 

@@ -86,4 +86,20 @@
       mode: 0755
   when: ansible_distribution == 'Debian'
 
+- name: marksman_installed
+  stat:
+    path: /usr/bin/marksman
+  register: marksman_installed
+
+- name: install marksman binary to /usr/bin/marksman does not exists
+  get_url: 
+    url: https://github.com/artempyanykh/marksman/releases/download/{{ marksman_version }}/marksman-linux-x64
+    dest: /usr/bin/marksman
+    mode: 0755
+  when: not marksman_installed.stat.exists
+
+
+
+
+
 

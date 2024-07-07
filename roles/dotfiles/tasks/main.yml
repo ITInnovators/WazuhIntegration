@@ -45,6 +45,15 @@
     state: directory
   loop: "{{ users.stdout_lines  }}"
 
+- name: copy config.toml to ~/.config/helix/config.toml helix
+  become: true
+  become_user: "{{ item }}"
+  copy:
+    src: config.toml
+    dest: "~/.config/helix/config.toml"
+    owner: "{{ item }}"
+  loop: "{{ users.stdout_lines }}"
+
 - name: copy starship config to ~/.config/starship.toml
   become: true
   become_user: "{{ item }}"
