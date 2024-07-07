@@ -45,6 +45,16 @@
     state: directory
   loop: "{{ users.stdout_lines  }}"
 
+- name: create folders
+  become: true
+  become_user: "{{ item }}"
+  file:
+    path: "~/.config/helix"
+    recurse: yes
+    owner: "{{ item }}"
+    state: directory
+  loop: "{{ users.stdout_lines  }}"
+
 - name: copy config.toml to ~/.config/helix/config.toml helix
   become: true
   become_user: "{{ item }}"
