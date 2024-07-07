@@ -18,3 +18,5 @@ alias mb="dmidecode -t 2"
 alias vi="hx"
 alias vim="hx"
 alias nvim="hx"
+alias f='hx $(fzf)'
+alias ff='thunar $(fzf)'

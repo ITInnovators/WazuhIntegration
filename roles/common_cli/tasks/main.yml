@@ -15,6 +15,9 @@
     - taskwarrior
     - ripgrep
     - jq
+    - bat
+    - fd-find
+
 
 #- name: Set timezone
 #  ansible.builtin.command:
