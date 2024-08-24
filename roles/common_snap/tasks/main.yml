@@ -1,18 +1,19 @@
 ---
-- name: Update snap package
-  command: snap refresh
-  ignore_errors: true
+#- name: Update snap package
+#  command: snap refresh
+#  ignore_errors: true
 
-- name: Install snap
-  community.general.snap:
-    name:
-      - slack
-      - brave
-      - obsidian
-      - signal-desktop
-      - thunderbird
-      - vlc
-      - superproductivity
-    classic: true
-    channel: stable
-    state: present
+#- name: Install snap
+#  community.general.snap:
+#    name:
+#      - slack
+#      - brave
+#      - obsidian
+#      - signal-desktop
+#      - thunderbird
+#      - vlc
+#      - superproductivity
+#    classic: true
+#    channel: stable
+#    state: present
+# Replace this shit with deb or flatpak
